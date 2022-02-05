@@ -1,0 +1,75 @@
+
+#To install hardhat tools and create project
+
+```
+sudo apt update
+sudo apt install curl git
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install nodejs
+```
+
+to create a project and directory :
+
+```
+npm init --yes
+npm install --save-dev hardhat
+npm install @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai
+npm install web3
+npx hardhat (and select empty project)
+```
+
+Moombean node provide you 10 ten accounts for testing.
+Install Node moombean for developpement (with docker) :
+
+```
+version: '3'
+services:
+  polkadot:
+    image: purestake/moonbeam:v0.18.1
+    ports:
+      - "30333:30333"
+      - "9933:9933"
+      - "9944:9944"
+    command: --dev --rpc-external --ws-external
+```
+
+The accounts_moombean contains all account with public adress and private key
+
+Copy paste this config and change IP according to your moombean installation docker dev :
+
+```
+// ethers plugin required to interact with the contract
+require('@nomiclabs/hardhat-ethers');
+
+// private key from the pre-funded Moonbase Alpha testing account
+const { privateKey } = require('./secrets.json');
+
+module.exports = {
+  // latest Solidity version
+  solidity: "0.8.1",
+
+  networks: {
+    moonbase: {
+      url: 'http://185.189.157.205:9933',
+      chainId: 1281, // 0x507 in hex,
+      accounts: [privateKey]
+    }
+  }
+};
+```
+
+You need to have a secrets json file that contains one private key on a pre-configured account offer by moombean dev
+
+Create your contract (see directory)
+
+Compile your contract :
+
+```
+npx hardhat compile
+```
+
+# To deploy the contract :
+
+```
+npx hardhat run --network moonbase scripts/deployXXX.js
+````

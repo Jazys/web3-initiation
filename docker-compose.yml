@@ -1,0 +1,9 @@
+version: '3'
+services:
+  polkadot:
+    image: purestake/moonbeam:v0.18.1
+    ports:
+      - "30333:30333"
+      - "9933:9933"
+      - "9944:9944"
+    command: --dev --rpc-external --ws-external
