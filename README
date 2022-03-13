@@ -13,6 +13,14 @@ All example of html file are in webpage directory
 
 Note: when you purge your node (restart for example), you need to clear all transaction from account in metamask
 
+To view blockchain like etherscan, you can use :
+
+https://polkadot.js.org/apps
+
+And change config in developpement menu, for example, to view my node :
+
+https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoon-ws.nuage.omvpb.ovh#/explorer/query/0x26a9456aaf24d12f195d9301136d11ce1815e85d3234d98d2a595e75339bebdb
+
 ```
 sudo apt update
 sudo apt install curl git
