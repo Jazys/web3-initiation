@@ -1,0 +1,55 @@
+version: '3'
+services:
+  nginx-web3:
+    image : nginx
+    restart: always
+    volumes:
+      - ./hardhat/webpage:/var/www/html
+      - ./hardhat/conf:/etc/nginx/conf.d/
+    networks:
+      - traefik-proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.web3.rule=Host(`web3.nuage.omvpb.ovh`) 
+      - traefik.http.routers.web3.entrypoints=websecure
+      - traefik.http.routers.web3.tls=true
+      - traefik.http.routers.web3.service=web3
+      - traefik.http.routers.web3.tls.certresolver=lets-encrypt
+      - traefik.http.services.web3.loadbalancer.server.port=80
+
+      - traefik.docker.network=traefik-proxy
+    
+  polkadot:
+    image: purestake/moonbeam:v0.18.1
+    networks:
+      - traefik-proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.moon-rpc.rule=Host(`moon-rpc.nuage.omvpb.ovh`) 
+      - traefik.http.routers.moon-rpc.entrypoints=websecure
+      - traefik.http.routers.moon-rpc.tls=true
+      - traefik.http.routers.moon-rpc.service=moon-rpc
+      - traefik.http.routers.moon-rpc.tls.certresolver=lets-encrypt
+      - traefik.http.services.moon-rpc.loadbalancer.server.port=9933
+
+      - traefik.http.routers.moon-ws.rule=Host(`moon-ws.nuage.omvpb.ovh`) 
+      - traefik.http.routers.moon-ws.entrypoints=websecure
+      - traefik.http.routers.moon-ws.tls=true
+      - traefik.http.routers.moon-ws.service=moon-ws
+      - traefik.http.routers.moon-ws.tls.certresolver=lets-encrypt
+      - traefik.http.services.moon-ws.loadbalancer.server.port=9944
+
+      - traefik.docker.network=traefik-proxy
+
+ 
+    ports:
+      - "30333:30333"
+      - "9933:9933"
+      - "9944:9944"
+    command: --dev --rpc-external --ws-external
+
+networks:
+    traefik-proxy:
+        external:
+            name: traefik-proxy
+            

@@ -6,12 +6,22 @@ const { privateKey } = require('./secrets.json');
 
 module.exports = {
   // latest Solidity version
-  solidity: "0.8.1",
+  solidity: {
+    compilers: [
+        {
+            version: "0.8.1"
+        },
+        {
+            version: "0.7.0"
+        }
+      ]
+  },
 
   networks: {
     // Moonbase Alpha network specification
     moonbase: {
-      url: 'http://185.189.157.205:9933',
+      url: 'http://185.189.156.201:9933',
+      //url: 'https://moon-rpc.nuage.omvpb.ovh',
       chainId: 1281, // 0x507 in hex,
       accounts: [privateKey]
     }

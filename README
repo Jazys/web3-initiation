@@ -1,6 +1,18 @@
 
 #To install hardhat tools and create project
 
+
+#Create moonbeam node
+
+In order to create your node on internet (no buy ou swap coin, only transfer and call contract)
+
+```use docker-compose -f docker-compose-with-traefik up -d```
+
+It deploy a blockchain node and nginx server to make test.
+All example of html file are in webpage directory
+
+Note: when you purge your node (restart for example), you need to clear all transaction from account in metamask
+
 ```
 sudo apt update
 sudo apt install curl git
@@ -73,3 +85,6 @@ npx hardhat compile
 ```
 npx hardhat run --network moonbase scripts/deployXXX.js
 ````
+
+Useful link :
+https://dev.to/hideckies/ethers-js-cheat-sheet-1h5j
