@@ -20,8 +20,8 @@ module.exports = {
   networks: {
     // Moonbase Alpha network specification
     moonbase: {
-      url: 'http://185.189.156.201:9933',
-      //url: 'https://moon-rpc.nuage.omvpb.ovh',
+      //url: 'http://185.189.156.201:9933',
+      url: 'https://moon-rpc.nuage.omvpb.ovh',
       chainId: 1281, // 0x507 in hex,
       accounts: [privateKey]
     }

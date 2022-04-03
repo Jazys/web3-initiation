@@ -5,11 +5,11 @@ import json
 # -- Define Provider & Variables --
 #
 # Provider
-infura_url = 'http://185.189.157.205:9933'
+infura_url = 'https://moon-rpc.nuage.omvpb.ovh'
 web3 = Web3(Web3.HTTPProvider(infura_url))
 
 # Variables
-contract_address = '0x38762083399e60af42e6fD694e7d430a170c9Caf'
+contract_address = '0x21cb3940e6Ba5284E1750F1109131a8E8062b9f1'
 
 account_from = {
     'private_key': '0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133',

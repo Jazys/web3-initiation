@@ -1,13 +1,12 @@
 async function main() {
     // We get the contract to deploy
+    const [owner, addr1, addr2] = await ethers.getSigners();
     const Hello = await ethers.getContractFactory('Hello');
     console.log('Deploying Hello...');
  
     // Instantiating a new Box smart contract
     const hell = await Hello.deploy();
  
-    // Waiting for the deployment to resolve
-    await hell.deployed();
     console.log('Hello deployed to:', hell.address);
  }
  

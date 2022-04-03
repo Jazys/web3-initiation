@@ -1,6 +1,6 @@
 from web3 import Web3
 
-infura_url = 'http://185.189.157.205:9933'
+infura_url = 'https://moon-rpc.nuage.omvpb.ovh'
 web3 = Web3(Web3.HTTPProvider(infura_url))
 
 

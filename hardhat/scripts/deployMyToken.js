@@ -1,10 +1,10 @@
 async function main() {
     // We get the contract to deploy
-    const MyToken = await ethers.getContractFactory('MyToken');
+    const MyToken = await ethers.getContractFactory('Token');
     console.log('Deploying MyToken...');
  
     // Instantiating a new Box smart contract
-    const mytok = await MyToken.deploy(800000000000);
+    const mytok = await MyToken.deploy("Token", "TOK");
  
     // Waiting for the deployment to resolve
     await mytok.deployed();
