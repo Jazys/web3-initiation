@@ -25,7 +25,7 @@ async function main() {
 
     await callReadContractFunction();
 
-    //await callSetContractFunction("store", existingWallet);
+    await callSetContractFunction("store", existingWallet);
     await callSetContractFunction("reset", customCreateWallet);
 
     await doSignMessage("test",existingWallet );
