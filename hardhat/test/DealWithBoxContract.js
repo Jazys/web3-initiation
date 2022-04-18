@@ -104,8 +104,18 @@ async function makeTranserBetweenAccount(adressTo, walletFrom){
 }
 
 async function callReadContractFunction(){
-    let rep =await currentContract.retrieve()
+    //let rep =await currentContract.retrieve()
+    let rep =await currentContract['retrieve()']()
     console.log(rep)
+}
+
+// this is the method performing execution of functions
+function execFn(fnName, ctx /*, args */) 
+{
+  // get passed arguments except first two (fnName, ctx)
+  var args = Array.prototype.slice.call(arguments, 2);
+  // execute the function with passed parameters and return result
+  return ctx[fnName].apply(ctx, args);
 }
 
 async function callSetContractFunction(functionName, wallet){
@@ -126,10 +136,12 @@ async function callSetContractFunction(functionName, wallet){
     switch(functionName)
     {
         case "store":
-            unsignedTx = await contractWithSigner.populateTransaction.store(10, rawTx)
+            //unsignedTx = await eval('contractWithSigner'+'.populateTransaction.store(10, rawTx)')
+            unsignedTx = contractWithSigner.populateTransaction["store"](12,rawTx)
             break;
         case "reset":
-            unsignedTx = await contractWithSigner.populateTransaction.reset(rawTx)
+            //unsignedTx = await eval('contractWithSigner.populateTransaction.reset(rawTx)')
+            unsignedTx = contractWithSigner.populateTransaction["reset"](rawTx)
             break;
     }
   
